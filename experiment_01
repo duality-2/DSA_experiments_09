@@ -1,4 +1,4 @@
-[9:12 AM, 10/23/2024] Yash Bhurke: #include <stdio.h>
+#include <stdio.h>
 #include <stdlib.h>
 
 // Define a Node structure for the BST
