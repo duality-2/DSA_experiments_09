@@ -1,0 +1,102 @@
+[9:12 AM, 10/23/2024] Yash Bhurke: #include <stdio.h>
+#include <stdlib.h>
+
+// Define a Node structure for the BST
+struct Node {
+    int data;
+    struct Node *left, *right;
+};
+
+// Function to create a new node
+struct Node* createNode(int data) {
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->data = data;
+    newNode->left = newNode->right = NULL;
+    return newNode;
+}
+
+// Function to insert a node into the BST
+struct Node* insert(struct Node* root, int data) {
+    if (root == NULL) return createNode(data);
+    if (data < root->data)
+        root->left = insert(root->left, data);
+    else if (data > root->data)
+        root->right = insert(root->right, data);
+    return root;
+}
+
+// Function to search for a value in the BST
+struct Node* search(struct Node* ro…
+[11:48 AM, 10/23/2024] Yash Bhurke: #include <stdio.h>
+#include <stdlib.h>
+
+#define MAX 100
+
+int stack[MAX];
+int top = -1;
+
+void push(int data) {
+    if (top >= MAX - 1) {
+        printf("Stack overflow\n");
+        return;
+    }
+    stack[++top] = data;
+    printf("Element %d pushed to stack\n", data);
+}
+
+int pop() {
+    if (top < 0) {
+        printf("Stack underflow\n");
+        return -1;
+    }
+    return stack[top--];
+}
+
+void displayStack() {
+    if (top < 0) {
+        printf("Stack is empty\n");
+        return;
+    }
+    printf("Stack elements: ");
+    for (int i = top; i >= 0; i--) {
+        printf("%d ", stack[i]);
+    }
+    printf("\n");
+}
+
+int main() {
+    int choice, data;
+    do {
+        printf("\nMenu:\n");
+        printf("1. Push\n");
+        printf("2. Pop\n");
+        printf("3. Display Stack\n");
+        printf("4. Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+
+        switch (choice) {
+            case 1:
+                printf("Enter data to push: ");
+                scanf("%d", &data);
+                push(data);
+                break;
+            case 2:
+                data = pop();
+                if (data != -1) {
+                    printf("Popped element: %d\n", data);
+                }
+                break;
+            case 3:
+                displayStack();
+                break;
+            case 4:
+                printf("Exiting...\n");
+                break;
+            default:
+                printf("Invalid choice, please try again.\n");
+        }
+    } while (choice != 4);
+
+    return 0;
+}
